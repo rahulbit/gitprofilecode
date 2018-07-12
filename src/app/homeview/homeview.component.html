@@ -1,0 +1,132 @@
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,
+    user-scalable=no">
+</head>
+
+
+
+<body>
+
+  <div class="container">
+<!-- profile section--> 
+    <div class="row m-3 p-2" *ngIf="getdata">
+      <div class="col-sm-12 col-md-3 " style="text-align: left">
+        <div class="card" style="width: 9rem;">
+          <img class="card-img-top" src="{{getdata.avatar_url}}">
+
+        </div>
+
+        <h3>{{getdata.name}}</h3>
+        <p>{{getdata.login}}</p>
+        <br>
+        <br>
+        <p>{{getdata.bio}}</p>
+        <button type="button" class="btn btn-secondary btn-lg">Edit bio</button>
+        <br>
+        <br>
+        <p>work:{{getdata.company}}</p>
+        <p>location:{{getdata.location}}</p>
+
+
+      </div>
+<!-- end of profile section-->
+<!--  righ section code -->      
+      <div class="col-sm-12 col-md-9 ">
+        <div class="row ">
+          <div class="  col-12  ">
+
+            <button type="button" class="btn btn-light">
+              Overview
+              <span class="badge badge-light"></span>
+            </button>
+
+
+
+            <button type="button" class="btn btn-light">
+              Repositories
+              <span class="badge badge-light">11</span>
+            </button>
+
+
+
+            <button type="button" class="btn btn-light">
+              stars
+              <span class="badge badge-light">5</span>
+            </button>
+
+
+
+            <button type="button" class="btn btn-light">
+              followers
+              <span class="badge badge-light">2</span>
+            </button>
+
+
+
+            <button type="button" class="btn btn-light">
+              following
+              <span class="badge badge-light">2</span>
+            </button>
+
+            <p class="border-bottom"></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class=" col-sm-12 col-md-6">
+            <input [(ngModel)]="searchText" #text="ngModel" placeholder="enter repo name">
+          </div>
+          <div class="col-sm-12 col-md-2">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Type</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item">All</button>
+                <button class="dropdown-item">public</button>
+                <button class="dropdown-item">private</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-2">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Language</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item">All</button>
+                <button class="dropdown-item">TypeScript</button>
+                <button class="dropdown-item">Javascript</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-2">
+            <button type="button" class="btn btn-primary">new</button>
+          </div>
+          <p class="border-bottom"></p>
+        </div>
+
+
+        <div class="row  m-5 p-5" *ngIf="getrepo.length>0">
+
+
+<!-- end of righsection code -->
+
+<!-- list of repo-->
+
+          <div class="col-12" *ngFor="let repo of getrepo |myfilter :searchText ">
+            <h3> {{repo.name}}</h3>
+            <p>{{repo.description}}</p>
+
+            <p>{{repo.updated_at|date}}</p>
+
+            <p class="border-bottom"></p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+
+</html>
